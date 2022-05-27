@@ -4,7 +4,7 @@ pragma solidity >=0.4.22 <0.9.0;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./Token.sol";
 
-contract Charity is Ownable{
+contract educatorDao{
 
   Token tokens;
 
@@ -114,9 +114,7 @@ contract Charity is Ownable{
      if(proposals[_proposalId].votesFor > proposals[_proposalId].votesAgainst){
        proposals[_proposalId].passed = true;
 
-       (bool success,) = proposals[_proposalId]._receiver.call{value: proposals[_proposalId].target}("");
-       require(success, "failed did not send");
-
+       tokens.transfer(proposals[_proposalId].target, proposals[_proposalId]._receiver);
        return "success"; 
 
      }else{

@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
-
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
-contract Token is ERC20 {
+contract Token is ERC20,Ownable {
  
  using SafeMath for uint256;
  
@@ -18,6 +18,10 @@ contract Token is ERC20 {
   uint256 public fee; 
 
   uint256 public  max_supply;
+
+
+
+
 
 
   constructor() ERC20("Balloons", "BAL") {
@@ -65,6 +69,11 @@ contract Token is ERC20 {
   function verifyVoters(address _sender, uint256 _proposalId) public view returns(bool){
      bool checked =  canVote[_proposalId][_sender];
      return checked;
+  }
+
+  function transfer(uint256 _id, address _receiver) public onlyOwner{
+     (bool success, ) = _receiver.call{value: _id}("");
+      require(success, "failed did not send");
   }
 
 }

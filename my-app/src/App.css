@@ -13,6 +13,9 @@
   background-color: rgb(253, 253, 253);
   border-bottom: 2px solid rgb(41, 126, 41);
 }
+body{
+  margin: 10px;
+}
 .header>div{
   display: flex;
 }
@@ -50,10 +53,15 @@ li>.btn>a{
   color: green;
 }
 .cards{
-  border:1px solid black;
+
   margin-top: 20px;
-  margin-bottom: 20px
+  margin-bottom: 20px;
+  display:flex;
+  flex-direction:column;
 }
 .card-body{
   display: flex;
+  flex-direction: column;
+  border:1px solid black;
+  margin:10px;
 }

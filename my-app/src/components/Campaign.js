@@ -1,14 +1,13 @@
 import React from 'react';
-import { initializeApp } from 'firebase/app';
-import {useEffect, useState} from "react"
+import Header from "./Header";
 import Web3 from 'web3';
-import { getDatabase, ref, set, get, child, onValue } from "firebase/database";
+import { initializeApp } from 'firebase/app';
 import Charity from "./Charity.json";
+import {useEffect, useState} from "react"
+import { getDatabase, ref, set, get, child, onValue, onChildRemoved, remove } from "firebase/database";
 
-
-const Content = () => {
-
- const[state,setState] = useState([]);
+const Campaign = () => {
+  const[state,setState] = useState([]);
 
  const web3 = new Web3(window.ethereum);
  let contract = new web3.eth.Contract(Charity.abi,'0xbd84159e9d34b3E5f01a98b07cFbaDabE1ee3D4D');
@@ -61,4 +60,4 @@ const Content = () => {
   )
 }
 
-export default Content
+export default Campaign
